@@ -11,10 +11,6 @@ Black = (0, 0, 0)
 Red = (252, 33, 18)
 Yellow = (245, 233, 66)
 
-FaceRad = 100
-Eye1Rad = 20
-Eye2Rad = 15
-
 screen.fill(White)
 dr.circle(screen, Yellow, (200, 200), 100, 0)
 dr.circle(screen, Black, (200, 200), 100, 2)
