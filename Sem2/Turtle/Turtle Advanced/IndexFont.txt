@@ -1,0 +1,10 @@
+1,1,1,1,0,0,0,0;down,right,up,left,right,up,up,up;2,1,2,1,2,0,0,0
+0,1,1,0,0,0,0,0;down,rightup,down,rightup,up,up,up,up;1,1,2,1,1,0,0,0
+1,1,1,1,0,0,0,0;right,down,leftdown,right,rightup,up,up,up;1,1,1,1,1,1,0,0
+1,1,1,1,0,0,0,0;right,leftdown,right,leftdown,rightup,up,up,up;1,1,1,1,2,0,0,0
+1,1,1,1,0,0,0,0;down,right,up,down,rightup,up,up,up;1,1,1,2,1,1,0,0
+0,1,1,1,1,1,0,0;right,left,down,right,down,left,rightup,up;1,1,1,1,1,1,2,0
+0,1,1,1,1,1,0,0;right,leftdown,down,right,up,left,right,rightup;1,1,1,1,1,1,1,1
+1,1,1,0,0,0,0,0;right,leftdown,down,rightup,up,up,up,up;1,1,1,2,0,0,0,0
+1,1,1,1,1,1,0,0;right,down,left,up,down,right,rightup,up;1,2,1,2,1,1,1,0
+0,1,1,1,1,1,0,0;down,rightup,up,left,down,right,rightup,up;2,1,1,1,1,1,1,0
