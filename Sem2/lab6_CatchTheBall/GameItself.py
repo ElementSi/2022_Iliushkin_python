@@ -5,7 +5,7 @@ import random as rand
 pygame.init()
 
 FPS = 60
-GAME_DURATION = 1800
+GAME_DURATION = 18000
 
 SCR_WIDTH = 1500
 SCR_HEIGHT = 750
@@ -90,8 +90,6 @@ class Figure:
         """
         self.age += 1 / FPS
         speed = (self.x_velocity ** 2 + self.y_velocity ** 2) ** 0.5
-        x_delta = self.x_velocity * 1 / FPS
-        y_delta = self.y_velocity * 1 / FPS
 
         if self.is_hit_left_wall():
             self.x_velocity = rand.uniform(speed / 3, speed)
@@ -109,8 +107,8 @@ class Figure:
             self.y_velocity = -rand.uniform(speed / 3, speed)
             self.x_velocity = rand.randrange(-1, 2, 2) * (speed ** 2 - self.y_velocity ** 2) ** 0.5
 
-        self.x_coordinate += x_delta
-        self.y_coordinate += y_delta
+        self.x_coordinate += self.x_velocity * 1 / FPS
+        self.y_coordinate += self.y_velocity * 1 / FPS
 
     def is_caught(self, click_event):
         """
@@ -263,18 +261,18 @@ def draw_player_score(surface, color, name, score):
     surface.blit(text_surface, (10, 300))
 
 
-def hit_registration(figures, score, fin, hit):
+def hit_registration(figures, score, finish, hit):
     """
     Accepts key parameters: list of figures, player's score, last hit and modify them in dependence of current click
     :param figures: List of figures
     :param score: Current player's score
-    :param fin: Is it necessary to stop game
+    :param finish: Is it necessary to stop game
     :param hit: Points from last hit
     :return: Modified in dependence of current click arguments
     """
     for eve in pygame.event.get():
         if eve.type == pygame.QUIT:
-            fin = True
+            finish = True
         elif eve.type == pygame.MOUSEBUTTONDOWN:
             k = 0
             caught = False
@@ -294,7 +292,7 @@ def hit_registration(figures, score, fin, hit):
             if not caught:
                 score -= 1
                 hit = -1
-    return figures, score, fin, hit
+    return figures, score, finish, hit
 
 
 def sort_double_component_array(array):
