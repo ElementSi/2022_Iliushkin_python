@@ -1,4 +1,5 @@
 Egor 100
+Krisa 56
 Amoeba 44
 Podsolnukh 43
 Vishnya 42
@@ -7,4 +8,3 @@ Glicerinus 40
 Amogus 38
 Vishnya 36
 Kardinal 33
-Gnida 30
