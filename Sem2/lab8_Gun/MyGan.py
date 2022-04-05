@@ -529,14 +529,18 @@ while not finished:
     pg.display.update()
     clock.tick(FPS)
 
+    # Проверка на число оставшихся танков
+    if len(tanks_list) == 1:
+        tank_under_control = 0
+
     # Обработка ввода
     for event in pg.event.get():
         if event.type == pg.QUIT:
             finished = True
         if event.type == pg.KEYDOWN:
             if len(tanks_list) == 1:
-                pass
-            if event.key == 32 and tank_under_control == 0:
+                tank_under_control = 0
+            elif event.key == 32 and tank_under_control == 0:
                 tanks_list[tank_under_control].velocity = [0, 0]
                 tank_under_control = 1
             elif event.key == 32 and tank_under_control == 1:
