@@ -446,7 +446,7 @@ class Shotgun(Gun):
 
     def draw(self):
         """
-        Drawing artillery gun with narrow-angle aim
+        Drawing shotgun with wide-angle aim
         """
         trans_surface = pg.Surface((SCREEN_WIDTH, SCREEN_HEIGHT), pg.SRCALPHA)
         aim_width = self.width + ((self.fire_power - 10) / 40) * 54
