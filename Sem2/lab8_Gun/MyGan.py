@@ -170,7 +170,7 @@ class Projectile:
         Check if Projectile hit the Ground
         :return: bool - is Ground hit
         """
-        return abs(self.coordinates[1] - (SCREEN_HEIGHT - GROUND_HEIGHT / 2)) < self.rad
+        return self.coordinates[1] - self.rad > SCREEN_HEIGHT - GROUND_HEIGHT / 2
 
     def is_out_of_screen(self):
         """
