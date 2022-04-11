@@ -571,7 +571,7 @@ class Gun:
         pi = math.pi
         if event.type == pg.MOUSEMOTION:
             if event.pos[0] - self.coordinates[0] == 0:
-                self.angle = pi / 2
+                self.angle = -pi / 2
             elif event.pos[1] - self.coordinates[1] > 0:
                 if event.pos[0] - self.coordinates[0] > 0:
                     self.angle = 0
@@ -872,16 +872,13 @@ class Gameplay:
                 self.score_list[self.tank_under_control] += new_experience
                 self.targets_list.remove(target)
 
-        i = 0
-        while i < len(self.tanks_list):
-            if self.tanks_list[i].is_dead():
-                new_particle, new_experience = self.tanks_list[i].death()
+        for tank in self.tanks_list:
+            if tank.is_dead():
+                new_particle, new_experience = tank.death()
                 self.particles_list.append(new_particle)
                 self.score_list[self.tank_under_control] += new_experience
-                self.tanks_list.pop(i)
-                self.guns_list.pop(i)
-            else:
-                i += 1
+                self.guns_list.pop(self.tanks_list.index(tank))
+                self.tanks_list.remove(tank)
 
     def process_particles(self):
         """
