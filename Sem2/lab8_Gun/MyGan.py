@@ -2,9 +2,11 @@ import pygame as pg
 import math
 import random as rand
 
+pg.init()
+
 FPS = 60
-SCREEN_WIDTH = 1500
-SCREEN_HEIGHT = 750
+SCREEN_WIDTH = pg.display.Info().current_w
+SCREEN_HEIGHT = pg.display.Info().current_h
 
 SKY = (95, 204, 250)
 GREY = (28, 43, 28)
@@ -898,8 +900,6 @@ class Gameplay:
         if len(self.tanks_list) == 0:
             self.finished = True
 
-
-pg.init()
 
 screen = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 

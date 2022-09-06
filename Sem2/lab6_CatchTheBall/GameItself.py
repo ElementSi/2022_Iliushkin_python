@@ -5,7 +5,7 @@ import random as rand
 pygame.init()
 
 FPS = 60
-GAME_DURATION = 18000
+GAME_DURATION = 1800
 
 SCR_WIDTH = 1500
 SCR_HEIGHT = 750
