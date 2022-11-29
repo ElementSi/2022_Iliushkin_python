@@ -3,7 +3,7 @@ import pandas as pd
 data = {'A': 1.1,
         'B': pd.Timestamp('20200901'),
         'C': 111,
-        'D': [i ** 2  for i in range(4)],
+        'D': [i ** 2 for i in range(4)],
         'E': 'foo'}
 
 df = pd.DataFrame(data)

@@ -6,7 +6,7 @@ age = 18
 print("%s is %d" % (name, age))
 
 # Новый стиль
-print("{n} is {a}".format(n = name, a = age))
+print("{n} is {a}".format(n=name, a=age))
 
 # Новейший стиль (f-strings, Python 3.6+)
 print(f'{name} is {age}')

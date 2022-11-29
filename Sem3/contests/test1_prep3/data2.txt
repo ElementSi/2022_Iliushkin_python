@@ -1,0 +1,5 @@
+Poke1 fire 30
+Poke2 flying 10
+Poke3 fire,flying 40
+Poke4 water,bug 80
+Poke5 flying 30
