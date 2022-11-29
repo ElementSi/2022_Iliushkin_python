@@ -4,9 +4,19 @@ import random as rand
 
 pg.init()
 
-FPS = 120
+FPS = 60
 SCREEN_WIDTH = pg.display.Info().current_w
 SCREEN_HEIGHT = pg.display.Info().current_h
+
+TEXTURES = {
+    'ground':           pg.image.load("textures/ground.png"),
+    'land_explosion':   pg.image.load("textures/land_explosion.png"),
+    'default':          pg.image.load("textures/default.png"),
+    'air_explosion':    pg.image.load("textures/air_explosion.png"),
+    'tank':             pg.image.load("textures/tank.png"),
+    'air_balloon':      pg.image.load("textures/air_balloon.png"),
+    'airship':          pg.image.load("textures/airship.png"),
+}
 
 SKY = (95, 204, 250)
 GREY = (28, 43, 28)
@@ -41,12 +51,12 @@ class Particle:
         :param surface: Pygame Surface object - target surface
         :param size: list[float, float] - [size on the x, size on the y]
         :param coordinates: list[float, float] - [x coordinate of center, y coordinates of center]
-        :param texture: string - name of .png file
+        :param texture: string - surface with texture
         """
         self.surface = surface
         self.size = size
         self.coordinates = coordinates
-        self.texture = pg.transform.scale(pg.image.load(texture), (self.size[0], self.size[1]))
+        self.texture = pg.transform.scale(texture, (self.size[0], self.size[1]))
         self.lifetime = FPS * 1
         self.age = 0
 
@@ -93,7 +103,7 @@ class Ground:
         """
         self.surface = surface
         self.draw_box = (0, SCREEN_HEIGHT - GROUND_HEIGHT, SCREEN_WIDTH, GROUND_HEIGHT)
-        self.texture = pg.transform.scale(pg.image.load("textures/ground.png"), (SCREEN_WIDTH, GROUND_HEIGHT))
+        self.texture = pg.transform.scale(TEXTURES["ground"], (SCREEN_WIDTH, GROUND_HEIGHT))
 
     def draw(self):
         """
@@ -184,7 +194,7 @@ class Projectile:
     def get_damage(self):
         """
         Request for the damage
-        :return: int - damage of Projectile
+        :return: int - Projectile damage
         """
         return self.damage
 
@@ -219,7 +229,7 @@ class Shell(Projectile):
         return Particle(self.surface,
                         (self.rad * 5, self.rad * 5),
                         (self.coordinates[0], SCREEN_HEIGHT - (GROUND_HEIGHT / 2 + 2.5 * self.rad)),
-                        "textures/land_explosion.png")
+                        TEXTURES["land_explosion"])
 
     def get_type(self):
         """
@@ -278,7 +288,7 @@ class Bomb(Projectile):
         return Particle(self.surface,
                         (self.rad * 8, self.rad * 8),
                         (self.coordinates[0], SCREEN_HEIGHT - (GROUND_HEIGHT / 2 + 4 * self.rad)),
-                        "textures/land_explosion.png")
+                        TEXTURES["land_explosion"])
 
     def get_type(self):
         """
@@ -305,7 +315,7 @@ class Vehicle:
         self.coordinates = []
         self.velocity = []
         self.hitbox = []
-        self.texture = pg.transform.scale(pg.image.load("textures/default.png"), (10, 10))
+        self.texture = pg.transform.scale(TEXTURES["default"], (10, 10))
 
     def update_hitbox(self):
         """
@@ -344,7 +354,7 @@ class Vehicle:
         :return: Particle object - image of the explosion
         :return: int - experience points from killing the Vehicle
         """
-        explosion_particle = Particle(self.surface, self.size, self.coordinates, "textures/air_explosion.png")
+        explosion_particle = Particle(self.surface, self.size, self.coordinates, TEXTURES["air_explosion"])
         return explosion_particle, self.exp_points
 
     def is_dead(self):
@@ -382,7 +392,7 @@ class Tank(Vehicle):
         self.hitbox = [[self.coordinates[0], self.coordinates[1] + 21, self.size[0] / 2, 9],
                        [self.coordinates[0], self.coordinates[1] + 4, 36, 7],
                        [self.coordinates[0], self.coordinates[1] - 17, 25, 13]]
-        self.texture = pg.transform.scale(pg.image.load("textures/tank.png"), (self.size[0], self.size[1]))
+        self.texture = pg.transform.scale(TEXTURES["tank"], (self.size[0], self.size[1]))
         self.control_buttons = control_buttons
         self.score = 0
 
@@ -417,7 +427,7 @@ class Tank(Vehicle):
         explosion_particle = Particle(self.surface,
                                       [self.size[0] * 2, self.size[1] * 4],
                                       [self.coordinates[0], self.coordinates[1] - 1.5 * self.size[1]],
-                                      "textures/land_explosion.png")
+                                      TEXTURES["land_explosion"])
         return explosion_particle, self.exp_points
 
     def get_type(self):
@@ -449,7 +459,7 @@ class AirBalloon(Vehicle):
                        [self.coordinates[0], self.coordinates[1] + 15, 39, 13],
                        [self.coordinates[0], self.coordinates[1] - 19, self.size[0] / 2, 21],
                        [self.coordinates[0], self.coordinates[1] - 50, 38, 10]]
-        self.texture = pg.transform.scale(pg.image.load("textures/air_balloon.png"), (self.size[0], self.size[1]))
+        self.texture = pg.transform.scale(TEXTURES["air_balloon"], (self.size[0], self.size[1]))
 
     def update_hitbox(self):
         """
@@ -496,7 +506,7 @@ class Airship(Vehicle):
                        [self.coordinates[0] + 42, self.coordinates[1], 40, self.size[1] / 2],
                        [self.coordinates[0] + 114, self.coordinates[1], 36, 10]]
         self.texture = pg.transform.flip(
-            pg.transform.scale(pg.image.load("textures/airship.png"), (self.size[0], self.size[1])),
+            pg.transform.scale(TEXTURES["airship"], (self.size[0], self.size[1])),
             bool(self.direction),
             False)
 
