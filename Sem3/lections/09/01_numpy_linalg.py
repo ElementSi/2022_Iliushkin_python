@@ -16,5 +16,5 @@ eigvals, eigvecs = np.linalg.eig(a)
 for i, eigval in enumerate(eigvals):
     print("================")
     print("eigval:", eigval)
-    print("eigvec:", eigvecs[:,i])
+    print("eigvec:", eigvecs[:, i])
     print("delta:", a.dot(eigvecs[:, i]) - eigval * eigvecs[:, i])
